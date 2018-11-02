@@ -1,5 +1,8 @@
 import React from 'react';
-import styles from './NuevoProducto.css';
+
+//Redux
+import {connect} from 'react-redux'
+import {agregarProducto} from '../Actions/productosActions'
 
 class NuevoProducto extends React.Component {
   static propTypes = {
@@ -27,10 +30,22 @@ class NuevoProducto extends React.Component {
 
     const {nombre, precio} = this.state;
 
+    // console.log(this.props);
+    
     if ( nombre === '' || precio === '') {
       this.setState({error: true})
       return;
     }
+    
+    this.setState({error:false})
+    
+    const infoProducto ={
+      nombre,
+      precio
+    }
+    this.props.agregarProducto(infoProducto)
+    
+    this.props.history.push('/')
   }
   render = () => {
     const {error} = this.state;
@@ -61,4 +76,4 @@ class NuevoProducto extends React.Component {
   }
 }
 
-export default NuevoProducto;
+export default connect(null, {agregarProducto})(NuevoProducto);
