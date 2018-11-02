@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import { borrarProducto } from '../Actions/productosActions'
 
 class Producto extends React.Component{
+
   eliminarProducto( id ) {
     // console.log(this.props);
     console.log('eliminando ',id);
